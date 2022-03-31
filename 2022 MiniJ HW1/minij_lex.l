@@ -45,7 +45,7 @@ System.Out.println	{return PRINT;}
 "]"			{return RSP;}
 ";"			{return SEMI;}
 "="			{return ASSIGN;}
-["//"]^[\n]		{return COMMENT;}
+[//]^[\n]		{return COMMENT;}
 [A-Za-z][A-Za-z0-9_]*	{return ID;}
 [0-9][0-9]*		{return LIT;}
 
