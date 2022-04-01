@@ -6,7 +6,7 @@
 ID  [A-Za-z][A-Za-z0-9_]*
 LIT [0-9][0-9]*
 NONNL [^\n]
-
+%x COMMENT 
 %%
 
 class			{return CLASS;}
@@ -22,8 +22,7 @@ while			{return WHILE;}
 new			{return NEW;}
 return			{return RETURN;}
 this			{return THIS;}
-boolean           {return BOOLEAN;}
-not          {return NOT;}
+
 true			{return TRUE;}
 false			{return FALSE;}
 "&&"			{return AND;}
@@ -45,11 +44,12 @@ System.Out.println	{return PRINT;}
 "]"			{return RSP;}
 ";"			{return SEMI;}
 "="			{return ASSIGN;}
-[//]^[\n]		{return COMMENT;}
+
 [A-Za-z][A-Za-z0-9_]*	{return ID;}
 [0-9][0-9]*		{return LIT;}
-
-
+"//"            {BEGIN COMMENT;}
+<COMMENT>\n     {BEGIN INITIAL;}
+<COMMENT>.      { }
 [ \t\n]			{/* skip BLANK */}
 .			{/* skip redundant characters */}
 
